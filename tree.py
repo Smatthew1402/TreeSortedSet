@@ -1,22 +1,19 @@
 from node import Node
 class BSTree:
-    def __init__(self, headnode:Node = Node(), headvalue = None):
-        if headnode is not None:
-            self.headnode = headnode
-            self.count = 1
-        elif headvalue is not None:
+    def __init__(self, headvalue = None):
+        if headvalue is not None:
             self.headnode = Node(value = headvalue)
             self.count = 1
         else:
-            self.headnode = headnode
+            self.headnode = None
             self.count = 0
 
     
     def _add(self, addvalue):
         if self.headnode is None:
-            self.headnode.data = addvalue
+            self.headnode = Node(addvalue)
         else:
-            self._addhelper(self.head, addvalue)
+            self._addhelper(self.headnode, addvalue)
         self.count +=1
         
     def _addhelper(self, pointernode:Node, newdata):
