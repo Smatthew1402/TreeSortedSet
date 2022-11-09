@@ -5,4 +5,11 @@ class Node:
         self.right = right
     
     def __repr__(self):
-        return "(" + str(self.data) + " " + str(self.left) + " " + str(self.right) + ")"
+        rep = "("
+        rep += str(self.data)
+        if self.left is not None:
+            rep += str(self.left)
+        if self.right is not None:
+            rep += str(self.right)
+        rep += ")"
+        return rep
