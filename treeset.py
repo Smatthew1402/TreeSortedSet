@@ -13,13 +13,17 @@ class sortedset:
     def rephelper(self, pointer)->str:
         rep = ""
         spacer = " "
-        if pointer.value is not None:
-            rep += self.rephelper(pointer.left)
-            rep += spacer
-            rep += str(pointer.data)
-            rep += spacer
-            rep += self.rephelper(pointer.right)
-            
+        if pointer is not None:
+            if pointer.data is not None:
+                rep += self.rephelper(pointer.left)
+                rep += spacer
+                rep += str(pointer.data)
+                rep += spacer
+                rep += self.rephelper(pointer.right)
+        return rep
+
+    
+
     
     def __repr__(self)->str:
-        return self.rephelper(self.tree.headnode)
+        return str(self.rephelper(self.tree.headnode))
