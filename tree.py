@@ -42,12 +42,17 @@ class BSTree:
             return self._searchhelper(self.headnode, value)
 
     def _searchhelper(self, pointernode:Node, value)->bool:
-        if pointernode.data < value:
-            return self._searchhelper(pointernode.right, value)
-        elif pointernode.data > value:
-            return self._searchhelper(pointernode.left, value)
-        elif pointernode.data == value:
-            return True
+        if pointernode is not None:
+            if pointernode.data == value:
+                return True
+            if pointernode.left is None and pointernode.right is None:
+                return False
+            if pointernode.left is not None:
+                if pointernode.data > value:
+                    return self._searchhelper(pointernode.left, value)
+            if pointernode.right is not None:
+                if pointernode.data < value:
+                    return self._searchhelper(pointernode.right, value)
         else:
             return False
 
