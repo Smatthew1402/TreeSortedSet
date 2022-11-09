@@ -21,13 +21,15 @@ class treebal:
 
 
     def makelist(tree)->list:
-        return treebal._listhelper(tree.headnode)
+        return treebal._listhelper(tree.headnode, [])
 
-    def _listhelper(pointer, datalist =[]):
+    def _listhelper(pointer, datalist = []):
         if pointer is not None:
             if pointer.data is not None:
                 treebal._listhelper(pointer.left, datalist)
                 datalist.append(pointer.data)
                 treebal._listhelper(pointer.right, datalist)
-        return datalist
+        outlist = datalist.copy()
+        del datalist
+        return outlist
     
