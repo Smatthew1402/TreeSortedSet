@@ -1,28 +1,37 @@
 from node import Node
-class tree:
-    def __init__(self, headnode:Node = None, headvalue = None):
+class BSTree:
+    def __init__(self, headnode:Node = Node(), headvalue = None):
         if headnode is not None:
             self.headnode = headnode
+            self.count = 1
+        elif headvalue is not None:
+            self.headnode = Node(value = headvalue)
+            self.count = 1
         else:
-            self.headnode = Node(headvalue)
+            self.headnode = headnode
+            self.count = 0
+
     
     def _add(self, addvalue):
         if self.headnode is None:
             self.headnode.data = addvalue
         else:
             self._addhelper(self.head, addvalue)
+        self.count +=1
         
     def _addhelper(self, pointernode:Node, newdata):
         if newdata < pointernode.data:
             if pointernode.left is None:
-                pointernode.left = Node(value=newdata)
+                pointernode.left = Node(value=newdata, parent=pointernode)
             else:
                 self._addhelper(pointernode.left, newdata)
         elif newdata > pointernode.data:
             if pointernode.right is None:
-                pointernode.right = Node(newdata)
+                pointernode.right = Node(value=newdata, parent=pointernode)
             else:
                 self._addhelper(pointernode.right, newdata)
+        elif newdata == pointernode.data:
+            raise Exception
     
     def add(self, newvalue):
         self._add(newvalue)
