@@ -19,12 +19,12 @@ class BSTree:
     def _addhelper(self, pointernode:Node, newdata):
         if newdata < pointernode.data:
             if pointernode.left is None:
-                pointernode.left = Node(value=newdata, parent=pointernode)
+                pointernode.left = Node(value=newdata)
             else:
                 self._addhelper(pointernode.left, newdata)
         elif newdata > pointernode.data:
             if pointernode.right is None:
-                pointernode.right = Node(value=newdata, parent=pointernode)
+                pointernode.right = Node(value=newdata)
             else:
                 self._addhelper(pointernode.right, newdata)
         elif newdata == pointernode.data:
